@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import GlobalStyle from "./components/GlobalStyle";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Landing from "../src/pages/Landing";
+import About from "./pages/About";
+import Footer from "./components/Footer";
+import NotFound from "./pages/NotFound";
+import Container from "./components/Container";
+import Grow from "./components/Grow";
+import NewPaste from "./pages/NewPaste";
+import PasteDetails from "./pages/PasteDetails";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Container>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/about" exact component={About} />
+            <Route path="/paste" exact component={NewPaste} />
+            <Route path="/paste/:id" exact component={PasteDetails} />
+            <Route component={NotFound} />
+          </Switch>
+          <Grow />
+          <Footer>Made with Love 💓</Footer>
+        </Container>
+      </Router>
+    </>
   );
 }
 
